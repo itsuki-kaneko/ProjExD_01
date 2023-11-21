@@ -14,7 +14,6 @@ def main():
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-
         screen.blit(bg_img, [0, 0]) # 背景表示
         screen.blit(kokaton[tmr%2], [300, 200])
         pg.display.update()

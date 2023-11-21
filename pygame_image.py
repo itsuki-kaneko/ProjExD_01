@@ -20,7 +20,7 @@ def main():
         screen.blit(kokaton[tmr%2], [300, 200])
         pg.display.update()
         tmr += 1        
-        clock.tick(10)
+        clock.tick(100)
 
 
 if __name__ == "__main__":

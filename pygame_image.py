@@ -1,6 +1,6 @@
 import sys
 import pygame as pg
-
+from math import sin
 
 def main():
     pg.display.set_caption("はばたけ！こうかとん")
@@ -9,15 +9,17 @@ def main():
     bg_img = pg.image.load("ex01/fig/pg_bg.jpg") # 背景surface
     kokaton = pg.image.load("ex01/fig/3.png") # こーかとんsurface
     kokaton = pg.transform.flip(kokaton, True, False) #こーかとんflip
-    kokaton = [kokaton, pg.transform.rotozoom(kokaton, 10, 1.0)] #こーかとん回転    
+    bg_imgs = [bg_img, pg.transform.flip(bg_img, True, False)]
+    # kokatons = [kokaton, pg.transform.rotozoom(kokaton, 10, 1.0), kokaton, pg.transform.rotozoom(kokaton, 10, 1.0)] #こーかとん回転    
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         x = tmr%1600
-        screen.blit(bg_img, [-x, 0])
-        screen.blit(bg_img, [1600-x, 0]) # 背景表示
-        screen.blit(kokaton[tmr%2], [300, 200])
+        r = sin(tmr/10)
+        screen.blit(bg_imgs[(tmr//1600)%2], [-x, 0])
+        screen.blit(bg_imgs[(tmr//1600+1)%2], [1600-x, 0]) # 背景表示
+        screen.blit(pg.transform.rotozoom(kokaton, 2*r, 1.0), [300, 200])
         pg.display.update()
         tmr += 1        
         clock.tick(100)
